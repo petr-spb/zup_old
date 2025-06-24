@@ -1,8 +1,18 @@
-ALTER view AN_EMPLOYEES AS
+USE [zup_old]
+GO
+
+/****** Object:  View [dbo].[AN_EMPLOYEES]    Script Date: 24.06.2025 13:08:10 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE OR ALTER view [dbo].[AN_EMPLOYEES] AS
 
 
 SELECT SOTR._IDRRef,
-	SOTR._Code AS [КОД_СОТРУДНИКА],
+	SOTR._Code AS [ТАБЕЛЬНЫЙ_НОМЕР],
 	SOTR._Description AS [ФИО_СОТРУДНИКА],
 	SOTR._Fld1532 AS [НОМЕР_ДОГОВОРА],
 	DATEADD(YEAR, -2000, SOTR._FLD1533) AS [ДАТА_ДОГОВОРА],
@@ -21,3 +31,6 @@ FROM _Reference114 AS SOTR
 JOIN _Reference51 AS DOLZHNOST ON DOLZHNOST._IDRRef = SOTR._Fld1536RRef
 
 WHERE SOTR._Marked = 0X00
+GO
+
+
