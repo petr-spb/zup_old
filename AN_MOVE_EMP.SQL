@@ -4,6 +4,7 @@ CREATE OR ALTER VIEW AN_MOVE_EMP AS
 		DATEADD(YEAR, -2000, KPO._Date_Time) AS [ДАТА_ДОКУМЕНТА],
 		KPO._Number,
 		KPO._Fld2831 AS [КОММЕНТАРИЙ],
+		AN_E.[ТАБЕЛЬНЫЙ_НОМЕР],
 		AN_E.[ФИО_СОТРУДНИКА],
 		KPO_SOTR._Fld2846 as [ПЕРЕМЕСТИТЬ С],
 		AN_POD_ORG.[_Description] AS [ПОДРАЗДЕЛЕНИЕ_ОРГАНИЗАЦИИ],
@@ -11,10 +12,10 @@ CREATE OR ALTER VIEW AN_MOVE_EMP AS
 		DOLZHN._Description AS [ДОЛЖНОСТЬ],
 		KPO_NACHISL._Fld2867 AS [ЗАРПЛАТА],
 		KPO_SOTR._FLD2851 AS [ЗАНИМАЕМЫХ_СТАВОК],
-		GR_RAB._Description AS [ГРАФИК_РАБОТЫ]	
+		GR_RAB._Description AS [ГРАФИК_РАБОТЫ]
 
 	FROM _Document175 as KPO -- КПО - КАДРОВЫЕ ПЕРЕМЕЩЕНИЯ ОРГАНИЗАЦИИ
-	LEFT JOIN _Reference80 AS O ON O._IDRRef = KPO._Fld2830RRef
+	LEFT JOIN _Reference80 AS O ON O._IDRRef = KPO._Fld2830RRef -- ОРГАНИЗАЦИЯ
 	LEFT JOIN _Document175_VT2842 AS KPO_SOTR ON KPO_SOTR._Document175_IDRRef = KPO._IDRRef -- ТАБЛИЧНАЯ ЧАСТЬ СОТРУДНИКИ ДОКУМЕНТА КАДРОВЫЕ ПЕРЕМЕЩЕНИЯ ОРГАНИЗАЦИИ
 	LEFT JOIN AN_EMPLOYEES AS AN_E ON AN_E._IDRREF = KPO_SOTR._Fld2844RRef -- ПРЕДСТАВЛЕНИЕ СОТРУДНИКОВ ОРГАНИЗАЦИИ
 	LEFT JOIN _Reference93 AS PO ON PO._IDRRef = KPO_SOTR._Fld2849RRef -- ОТДЕЛ ОРГАНИЗАЦИИ
