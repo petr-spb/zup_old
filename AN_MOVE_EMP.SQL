@@ -5,6 +5,7 @@ CREATE OR ALTER VIEW AN_MOVE_EMP AS
 		KPO._Number,
 		KPO._Fld2831 AS [КОММЕНТАРИЙ],
 		AN_E.[ФИО_СОТРУДНИКА],
+		KPO_SOTR._Fld2846 as [ПЕРЕМЕСТИТЬ С],
 		AN_POD_ORG.[_Description] AS [ПОДРАЗДЕЛЕНИЕ_ОРГАНИЗАЦИИ],
 		PO._Description AS [ОТДЕЛ_ОРГАНИЗАЦИИ],
 		DOLZHN._Description AS [ДОЛЖНОСТЬ],
