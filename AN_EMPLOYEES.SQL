@@ -1,14 +1,5 @@
-USE [zup_old]
-GO
 
-/****** Object:  View [dbo].[AN_EMPLOYEES]    Script Date: 24.06.2025 13:08:10 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE OR ALTER view [dbo].[AN_EMPLOYEES] AS
+ALTER   view [dbo].[AN_EMPLOYEES] AS
 
 
 SELECT SOTR._IDRRef,
@@ -19,11 +10,15 @@ SELECT SOTR._IDRRef,
 	DOLZHNOST._Description,
 	DATEADD(YEAR, -2000, SOTR._Fld1549) AS [ДАТА_ПРИЁМА_НА_РАБОТУ],
 	CASE
-		WHEN SOTR._Fld1550  = '2001-01-01 00:00:00.000' THEN DATEADD(YEAR, -2000, SOTR._FLD1533)
+		WHEN SOTR._Fld1550  = '2001-01-01 00:00:00.000' THEN NULL
 		WHEN SOTR._Fld1550 <> '2001-01-01 00:00:00.000' THEN DATEADD(YEAR, -2000, SOTR._Fld1550)
 	END AS [ДАТА_УВОЛЬНЕНИЯ],
+	CASE
+		WHEN SOTR._Fld1550  = '2001-01-01 00:00:00.000' THEN 'РАБОТАЕТ'
+		ELSE 'УВОЛЕН'
+	END AS 'РАБОТАЕТ/УВОЛЕН',
 
-	--	--DATEADD(YEAR, -2000, SOTR._Fld1550) AS [ДАТА_УВОЛЬНЕНИЯ]
+	--DATEADD(YEAR, -2000, SOTR._Fld1550) AS [ДАТА_УВОЛЬНЕНИЯ],
 
 	SOTR._Fld1550
 FROM _Reference114 AS SOTR
