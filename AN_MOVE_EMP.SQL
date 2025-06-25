@@ -6,6 +6,8 @@ CREATE OR ALTER   VIEW [dbo].[AN_MOVE_EMP] AS
 		KPO._Fld2831 AS [КОММЕНТАРИЙ],
 		AN_E.[ТАБЕЛЬНЫЙ_НОМЕР],
 		AN_E.[ФИО_СОТРУДНИКА],
+		FIZ_LIC._IDRRef AS IDRREF_FIZ,
+		FIZ_LIC._Description AS [ФИЗИЧЕСКОЕ_ЛИЦО],
 		DATEADD(YEAR, -2000, KPO_SOTR._Fld2846) as [ПЕРЕМЕСТИТЬ С],
 		AN_POD_ORG.[_Description] AS [ПОДРАЗДЕЛЕНИЕ_ОРГАНИЗАЦИИ],
 		PO._Description AS [ОТДЕЛ_ОРГАНИЗАЦИИ],
@@ -23,6 +25,7 @@ CREATE OR ALTER   VIEW [dbo].[AN_MOVE_EMP] AS
 	left join _Document175_VT2861 as KPO_NACHISL ON KPO_NACHISL._Document175_IDRRef = KPO._IDRRef -- ТАБЛИЧНАЯ ЧАСТЬ НАЧИСЛЕНИЯ ДОКУМЕНТА КАДРОВЫЕ ПЕРЕМЕЩЕНИЯ ОРГАНИЗАЦИИ
 	LEFT JOIN _Reference41 AS GR_RAB ON GR_RAB._IDRRef = KPO_SOTR._Fld2854RRef -- ГРАФИК РАБОТЫ
 	LEFT JOIN AN_PODRAZDEL_ORG AS AN_POD_ORG ON AN_POD_ORG._IDRREF = PO._ParentIDRRef -- ПОДРАЗДЕЛЕНИЯ
+	LEFT JOIN _Reference135 AS FIZ_LIC ON FIZ_LIC._IDRRef = KPO_SOTR._Fld2845RRef
 
 
 
