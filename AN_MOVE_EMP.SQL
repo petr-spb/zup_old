@@ -1,4 +1,4 @@
-CREATE OR ALTER VIEW AN_MOVE_EMP AS
+CREATE OR ALTER   VIEW [dbo].[AN_MOVE_EMP] AS
 	SELECT 
 		O._Description,
 		DATEADD(YEAR, -2000, KPO._Date_Time) AS [ДАТА_ДОКУМЕНТА],
@@ -6,7 +6,7 @@ CREATE OR ALTER VIEW AN_MOVE_EMP AS
 		KPO._Fld2831 AS [КОММЕНТАРИЙ],
 		AN_E.[ТАБЕЛЬНЫЙ_НОМЕР],
 		AN_E.[ФИО_СОТРУДНИКА],
-		KPO_SOTR._Fld2846 as [ПЕРЕМЕСТИТЬ С],
+		DATEADD(YEAR, -2000, KPO_SOTR._Fld2846) as [ПЕРЕМЕСТИТЬ С],
 		AN_POD_ORG.[_Description] AS [ПОДРАЗДЕЛЕНИЕ_ОРГАНИЗАЦИИ],
 		PO._Description AS [ОТДЕЛ_ОРГАНИЗАЦИИ],
 		DOLZHN._Description AS [ДОЛЖНОСТЬ],
@@ -29,3 +29,6 @@ CREATE OR ALTER VIEW AN_MOVE_EMP AS
 where KPO._Marked = 0x00 AND KPO._Posted = 0x01 AND AN_E.[ФИО_СОТРУДНИКА] IS NOT NULL
 
 --ORDER BY KPO._NUMBER
+GO
+
+
