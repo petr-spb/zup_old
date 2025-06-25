@@ -1,4 +1,4 @@
-CREATE OR ALTER   VIEW [dbo].[AN_MOVE_EMP] AS
+ALTER     VIEW [dbo].[AN_MOVE_EMP] AS
 	SELECT 
 		O._Description,
 		DATEADD(YEAR, -2000, KPO._Date_Time) AS [ДАТА_ДОКУМЕНТА],
@@ -22,14 +22,15 @@ CREATE OR ALTER   VIEW [dbo].[AN_MOVE_EMP] AS
 	LEFT JOIN AN_EMPLOYEES AS AN_E ON AN_E._IDRREF = KPO_SOTR._Fld2844RRef -- ПРЕДСТАВЛЕНИЕ СОТРУДНИКОВ ОРГАНИЗАЦИИ
 	LEFT JOIN _Reference93 AS PO ON PO._IDRRef = KPO_SOTR._Fld2849RRef -- ОТДЕЛ ОРГАНИЗАЦИИ
 	LEFT JOIN _Reference51 AS DOLZHN ON DOLZHN._IDRRef = KPO_SOTR._Fld2850RRef -- ДОЛЖНОСТИ
-	left join _Document175_VT2861 as KPO_NACHISL ON KPO_NACHISL._Document175_IDRRef = KPO._IDRRef -- ТАБЛИЧНАЯ ЧАСТЬ НАЧИСЛЕНИЯ ДОКУМЕНТА КАДРОВЫЕ ПЕРЕМЕЩЕНИЯ ОРГАНИЗАЦИИ
+	LEFT JOIN _Reference135 AS FIZ_LIC ON FIZ_LIC._IDRRef = KPO_SOTR._Fld2845RRef
+	left join _Document175_VT2861 as KPO_NACHISL ON KPO_NACHISL._Document175_IDRRef = KPO._IDRRef AND FIZ_LIC._IDRREF = KPO_NACHISL._Fld2864RRef -- ТАБЛИЧНАЯ ЧАСТЬ НАЧИСЛЕНИЯ ДОКУМЕНТА КАДРОВЫЕ ПЕРЕМЕЩЕНИЯ ОРГАНИЗАЦИИ
 	LEFT JOIN _Reference41 AS GR_RAB ON GR_RAB._IDRRef = KPO_SOTR._Fld2854RRef -- ГРАФИК РАБОТЫ
 	LEFT JOIN AN_PODRAZDEL_ORG AS AN_POD_ORG ON AN_POD_ORG._IDRREF = PO._ParentIDRRef -- ПОДРАЗДЕЛЕНИЯ
-	LEFT JOIN _Reference135 AS FIZ_LIC ON FIZ_LIC._IDRRef = KPO_SOTR._Fld2845RRef
+	
 
 
 
-where KPO._Marked = 0x00 AND KPO._Posted = 0x01 AND AN_E.[ФИО_СОТРУДНИКА] IS NOT NULL
+where KPO._Marked = 0x00 AND KPO._Posted = 0x01 AND AN_E.[ФИО_СОТРУДНИКА] IS NOT NULL AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = '40-480'
 
 --ORDER BY KPO._NUMBER
 GO
