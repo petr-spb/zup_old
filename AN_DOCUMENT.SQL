@@ -12,6 +12,7 @@ WITH RankedMoves AS (
 SELECT
     NACHSL.ТАБЕЛЬНЫЙ_НОМЕР,
     NACHSL.ФИО_СОТРУДНИКА,
+	AN_PRIEM.[ПОДРАЗДЕЛЕНИЕ] AS [ПОДРАЗДЕЛЕНИЕ_ПРИ_ТРУДОУСТРОЙСТВЕ],
     AN_PRIEM.[ДОЛЖНОСТЬ] AS [ДОЛЖНОСТЬ_ПРИ_ТРУДОУСТРОЙСТВЕ],
     PER._Number AS [НОМЕР_ДОКУМЕНТА_ПЕРЕМЕЩЕНИЯ],
     PER.[ПЕРЕМЕСТИТЬ С],
@@ -39,6 +40,6 @@ LEFT JOIN AN_EMPLOYEES AS AN_E
     ON AN_E.IDRREF_FIZ = NACHSL._IDRRef_FIZ
 LEFT JOIN AN_PRIEM 
     ON AN_PRIEM.IDRREF_FIZ = NACHSL._IDRRef_FIZ
---WHERE NACHSL.ТАБЕЛЬНЫЙ_НОМЕР = '45-005'
---ORDER BY NACHSL.ТАБЕЛЬНЫЙ_НОМЕР
+--WHERE NACHSL.ТАБЕЛЬНЫЙ_НОМЕР = '00-150    '
+--ORDER BY NACHSL.ТАБЕЛЬНЫЙ_НОМЕР, NACHSL.НОМЕР_ДОКУМЕНТА
 GO
