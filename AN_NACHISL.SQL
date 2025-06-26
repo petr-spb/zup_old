@@ -17,7 +17,7 @@ SELECT
     DNZ_NDFL._Fld3154 AS [НАЛОГОВЫЙ_ВЫЧЕТ],
 	DNZ_NDFL._Fld3155 AS [НАЛОГОВЫЙ ВЫЧЕТ НА ДЕТЕЙ],
     DNZ_NDFL._Fld3153 AS [НДФЛ],
-	UDERZH._Description AS [ВИД_УЖЕРЖАНИЯ],
+	UDERZH._Description AS [ВИД_УДЕРЖАНИЯ],
 	DNZ_UDER._Fld3132 AS [УДЕРЖАНИЯ]
 	--DNZ_NAC._LineNo3048 DNZ_NAC,
 	--DNZ_NDFL._LineNo3151 AS DNZ_NDFL -- НОМЕРА СТРОК В СООТВЕСТВУЮЩИХ ТАБЛИЦАХ
