@@ -7,7 +7,6 @@ WITH RankedMoves AS (
             ORDER BY [ПЕРЕМЕСТИТЬ С]
         ) AS NextMoveDate
     FROM AN_MOVE_EMP AS PER
-    --WHERE PER.ТАБЕЛЬНЫЙ_НОМЕР = '45-005'
 )
 SELECT
     NACHSL.ТАБЕЛЬНЫЙ_НОМЕР,
