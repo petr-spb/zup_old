@@ -1,3 +1,13 @@
+USE [zup_old]
+GO
+
+/****** Object:  View [dbo].[AN_NACHISL]    Script Date: 26.06.2025 16:36:01 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
 ALTER   VIEW [dbo].[AN_NACHISL] AS
 SELECT 
     DNZ._IDRRef,
@@ -7,6 +17,7 @@ SELECT
     O._Description AS [НАЗВАНИЕ_ОРГАНИЗАЦИИ],
     DATEADD(YEAR, -2000, DNZ_NAC._Fld3052) AS [ПЕРИОД_С],
     DATEADD(YEAR, -2000, DNZ_NAC._Fld3053) AS [ПЕРИОД_ДО],
+	AN_E._IDRRef AS IDRREF_SOTR,
     AN_E._IDRRef _IDRREF_EMP,
     AN_E.[ТАБЕЛЬНЫЙ_НОМЕР],
     AN_E.[ФИО_СОТРУДНИКА],
@@ -37,7 +48,7 @@ LEFT JOIN _CKinds11 AS UDERZH ON UDERZH._IDRRef = DNZ_UDER._Fld3131RRef
 WHERE DNZ._Marked = 0x00 
     AND DNZ._Posted = 0x01 
     --AND DNZ._Number = '00000000001'
-	AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = '45-005'
+	--AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = '45-005'
     
 GO
 
