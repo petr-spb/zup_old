@@ -1,4 +1,4 @@
---ALTER VIEW [dbo].[AN_DOCUMENT] AS
+ALTER VIEW [dbo].[AN_DOCUMENT2] AS
 SELECT
     NACHSL.ТАБЕЛЬНЫЙ_НОМЕР,
     NACHSL.ФИО_СОТРУДНИКА,
