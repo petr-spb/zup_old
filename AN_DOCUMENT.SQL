@@ -1,4 +1,4 @@
-ALTER VIEW AN_DOCUMENT AS
+--ALTER VIEW [dbo].[AN_DOCUMENT] AS
 
 SELECT
 PER.ТАБЕЛЬНЫЙ_НОМЕР,
@@ -17,6 +17,7 @@ NACHSL.НАЧИСЛЕНО,
 NACHSL.НДФЛ,
 NACHSL.НАЛОГОВЫЙ_ВЫЧЕТ,
 NACHSL.[НАЛОГОВЫЙ ВЫЧЕТ НА ДЕТЕЙ],
+NACHSL.[ВИД_УЖЕРЖАНИЯ],
 NACHSL.УДЕРЖАНИЯ,
 AN_E.[РАБОТАЕТ/УВОЛЕН]
 
@@ -31,3 +32,6 @@ WHERE PER.ТАБЕЛЬНЫЙ_НОМЕР = '45-005    '
 
 --ORDER BY NACHSL.НОМЕР_ДОКУМЕНТА
 --order by PER.ТАБЕЛЬНЫЙ_НОМЕР
+GO
+
+
