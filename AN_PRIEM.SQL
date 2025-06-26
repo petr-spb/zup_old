@@ -2,7 +2,7 @@ CREATE OR ALTER view [dbo].[AN_PRIEM] AS
 SELECT
 PRIEM._Number,
 AN_E.ФИО_СОТРУДНИКА,
-DOLZHNOST._Description,
+DOLZHNOST._Description AS [ДОЛЖНОСТЬ],
 FIZ_LIC._IDRRef AS IDRREF_FIZ
 
 FROM _Document214 AS PRIEM
