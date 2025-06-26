@@ -1,7 +1,8 @@
-CREATE OR ALTER view [dbo].[AN_PRIEM] AS
+ALTER   view [dbo].[AN_PRIEM] AS
 SELECT
 PRIEM._Number,
 AN_E.ФИО_СОТРУДНИКА,
+PODR._Description AS [ПОДРАЗДЕЛЕНИЕ],
 DOLZHNOST._Description AS [ДОЛЖНОСТЬ],
 FIZ_LIC._IDRRef AS IDRREF_FIZ
 
@@ -11,6 +12,7 @@ LEFT JOIN _Document214_VT4353 AS PRIEM_SOTR ON PRIEM_SOTR._Document214_IDRRef = 
 LEFT JOIN AN_EMPLOYEES AS AN_E ON AN_E._IDRRef = PRIEM_SOTR._Fld4355RRef
 LEFT JOIN _Reference51 AS DOLZHNOST ON DOLZHNOST._IDRRef = PRIEM_SOTR._Fld4358RRef
 LEFT JOIN _Reference135 AS FIZ_LIC ON FIZ_LIC._IDRRef = PRIEM_SOTR._Fld4356RRef
+left join _Reference93 as PODR ON PODR._IDRRef = PRIEM_SOTR._Fld4357RRef
 GO
 
 
