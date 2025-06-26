@@ -1,9 +1,20 @@
+USE [zup_old]
+GO
+
+/****** Object:  View [dbo].[AN_MOVE_EMP]    Script Date: 26.06.2025 16:32:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
 ALTER     VIEW [dbo].[AN_MOVE_EMP] AS
 	SELECT 
 		O._Description,
 		DATEADD(YEAR, -2000, KPO._Date_Time) AS [ДАТА_ДОКУМЕНТА],
 		KPO._Number,
 		KPO._Fld2831 AS [КОММЕНТАРИЙ],
+		AN_E._IDRRef AS IDRREF_SOTR,
 		AN_E.[ТАБЕЛЬНЫЙ_НОМЕР],
 		AN_E.[ФИО_СОТРУДНИКА],
 		FIZ_LIC._IDRRef AS IDRREF_FIZ,
@@ -26,11 +37,12 @@ ALTER     VIEW [dbo].[AN_MOVE_EMP] AS
 	left join _Document175_VT2861 as KPO_NACHISL ON KPO_NACHISL._Document175_IDRRef = KPO._IDRRef AND FIZ_LIC._IDRREF = KPO_NACHISL._Fld2864RRef -- ТАБЛИЧНАЯ ЧАСТЬ НАЧИСЛЕНИЯ ДОКУМЕНТА КАДРОВЫЕ ПЕРЕМЕЩЕНИЯ ОРГАНИЗАЦИИ
 	LEFT JOIN _Reference41 AS GR_RAB ON GR_RAB._IDRRef = KPO_SOTR._Fld2854RRef -- ГРАФИК РАБОТЫ
 	LEFT JOIN AN_PODRAZDEL_ORG AS AN_POD_ORG ON AN_POD_ORG._IDRREF = PO._ParentIDRRef -- ПОДРАЗДЕЛЕНИЯ
+	--LEFT JOIN [AN_NACHISL] ON [AN_NACHISL]._IDRRef_FIZ = KPO_SOTR._Fld2845RRef AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = [AN_NACHISL].[ТАБЕЛЬНЫЙ_НОМЕР]
 	
 
 
 
-where KPO._Marked = 0x00 AND KPO._Posted = 0x01 AND AN_E.[ФИО_СОТРУДНИКА] IS NOT NULL AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = '40-480'
+where KPO._Marked = 0x00 AND KPO._Posted = 0x01 AND AN_E.[ФИО_СОТРУДНИКА] IS NOT NULL --AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = '45-005    '
 
 --ORDER BY KPO._NUMBER
 GO
