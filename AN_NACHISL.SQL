@@ -1,14 +1,4 @@
-USE [zup_old]
-GO
-
-/****** Object:  View [dbo].[AN_NACHISL]    Script Date: 25.06.2025 11:28:34 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
---CREATE OR ALTER VIEW [dbo].[AN_NACHISL] AS
+ALTER   VIEW [dbo].[AN_NACHISL] AS
 SELECT 
     DNZ._IDRRef,
 	PODR_ORG.[_Description] AS [ПОДРАЗДЕЛЕНИЕ_ОРГАНИЗАЦИИ],
@@ -27,7 +17,7 @@ SELECT
     DNZ_NDFL._Fld3154 AS [НАЛОГОВЫЙ_ВЫЧЕТ],
 	DNZ_NDFL._Fld3155 AS [НАЛОГОВЫЙ ВЫЧЕТ НА ДЕТЕЙ],
     DNZ_NDFL._Fld3153 AS [НДФЛ],
-	UDERZH._Description,
+	UDERZH._Description AS [ВИД_УЖЕРЖАНИЯ],
 	DNZ_UDER._Fld3132 AS [УДЕРЖАНИЯ]
 	--DNZ_NAC._LineNo3048 DNZ_NAC,
 	--DNZ_NDFL._LineNo3151 AS DNZ_NDFL -- НОМЕРА СТРОК В СООТВЕСТВУЮЩИХ ТАБЛИЦАХ
@@ -47,7 +37,8 @@ LEFT JOIN _CKinds11 AS UDERZH ON UDERZH._IDRRef = DNZ_UDER._Fld3131RRef
 WHERE DNZ._Marked = 0x00 
     AND DNZ._Posted = 0x01 
     --AND DNZ._Number = '00000000001'
-    -- Убрал фильтр по ТАБЕЛЬНЫЙ_НОМЕР, чтобы увидеть все данные
+	AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = '45-005'
+    
 GO
 
 
