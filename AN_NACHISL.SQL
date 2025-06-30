@@ -13,6 +13,7 @@ CREATE OR ALTER     VIEW [dbo].[AN_NACHISL] AS
 SELECT 
     DNZ._IDRRef,
 	PODR_ORG.[_Description] AS [ПОДРАЗДЕЛЕНИЕ_ОРГАНИЗАЦИИ],
+	org._Description as [ПОДРАЗДЕЛЕНИЕ],
     DATEADD(YEAR, -2000, DNZ._Date_Time) AS [ДАТА_НАЧИСЛЕНИЯ],
     DNZ._Number AS [НОМЕР_ДОКУМЕНТА],
     O._Description AS [НАЗВАНИЕ_ОРГАНИЗАЦИИ],
@@ -47,11 +48,12 @@ LEFT JOIN _Document181_VT3150 AS DNZ_NDFL -- НДФЛ
 LEFT JOIN _Document181_VT3128 AS DNZ_UDER ON DNZ_UDER._Document181_IDRRef = DNZ._IDRRef AND DNZ_UDER._Fld3130RRef = FIZ_LIC._IDRRef -- соед табл частью удержания и документ и по физ лицам
 LEFT JOIN AN_PODRAZDEL_ORG AS PODR_ORG ON PODR_ORG.[_IDRRef] = DNZ._Fld3038RRef -- соед представления подразделений и документа начисления
 LEFT JOIN _CKinds11 AS UDERZH ON UDERZH._IDRRef = DNZ_UDER._Fld3131RRef -- План видов расчетов Виды удержаний
+left join _Reference93 as ORG on ORG._IDRRef = DNZ_NAC._Fld3062RRef -- СОЕДИНЕНИЕ С ПОДРАЗДЕЛЕНИЕМ ОРГАНИЗАЦИИ
 
 WHERE DNZ._Marked = 0x00 
     AND DNZ._Posted = 0x01 
     --AND DNZ._Number = '00000000001'
-	--AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = '00-150'
+	--AND AN_E.[ТАБЕЛЬНЫЙ_НОМЕР] = '00-295    '
     
 GO
 
